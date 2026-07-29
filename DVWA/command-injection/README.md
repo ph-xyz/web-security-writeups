@@ -130,12 +130,19 @@ The second command was executed and also returned `www-data`.
 
 The issue at this level is that the filter blocks only a few known operators. Since other shell operators remain available, the vulnerability is still exploitable.
 
-<img width="625" height="116" alt="image" src="https://github.com/user-attachments/assets/b47b99a4-7bac-49c9-8bca-c14892aff8cf" />
-Payload: 127.0.0.1 | whoami
+### Evidence
 
+<p align="center">
+  <img width="780" alt="DVWA Medium — command injection bypass using the pipe operator" src="https://github.com/user-attachments/assets/b47b99a4-7bac-49c9-8bca-c14892aff8cf" />
+  <br>
+  <sub>Payload: <code>127.0.0.1 | whoami</code></sub>
+</p>
 
-<img width="622" height="115" alt="image" src="https://github.com/user-attachments/assets/ef555e28-7b09-4f92-80dd-2c03c4f19732" />
-Payload: 999.999.999.999 || whoami
+<p align="center">
+  <img width="780" alt="DVWA Medium — command injection using the OR operator with an invalid IP address" src="https://github.com/user-attachments/assets/ef555e28-7b09-4f92-80dd-2c03c4f19732" />
+  <br>
+  <sub>Payload: <code>999.999.999.999 || whoami</code></sub>
+</p>
 
 
 ## High
@@ -183,8 +190,13 @@ www-data
 
 This level demonstrated a common problem with blacklists: the filter was designed for one specific representation of the payload, but a small formatting change was enough to bypass it.
 
-<img width="625" height="112" alt="image" src="https://github.com/user-attachments/assets/dc9f7a2e-fd80-425b-b061-cf11e60b3a89" />
-Payload: 127.0.0.1|whoami
+### Evidence
+
+<p align="center">
+  <img width="780" alt="DVWA High — command injection blacklist bypass using a pipe without spaces" src="https://github.com/user-attachments/assets/dc9f7a2e-fd80-425b-b061-cf11e60b3a89" />
+  <br>
+  <sub>Payload: <code>127.0.0.1|whoami</code></sub>
+</p>
 
 
 ## Impossible
