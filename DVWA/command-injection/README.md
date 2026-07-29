@@ -130,9 +130,13 @@ The second command was executed and also returned `www-data`.
 
 The issue at this level is that the filter blocks only a few known operators. Since other shell operators remain available, the vulnerability is still exploitable.
 
-_Screenshot to add: execution of `127.0.0.1 | whoami`._
+<img width="625" height="116" alt="image" src="https://github.com/user-attachments/assets/b47b99a4-7bac-49c9-8bca-c14892aff8cf" />
+Payload: 127.0.0.1 | whoami
 
-_Screenshot to add: execution using `||`._
+
+<img width="622" height="115" alt="image" src="https://github.com/user-attachments/assets/ef555e28-7b09-4f92-80dd-2c03c4f19732" />
+Payload: 999.999.999.999 || whoami
+
 
 ## High
 
@@ -179,7 +183,9 @@ www-data
 
 This level demonstrated a common problem with blacklists: the filter was designed for one specific representation of the payload, but a small formatting change was enough to bypass it.
 
-_Screenshot to add: execution of `127.0.0.1|whoami`._
+<img width="625" height="112" alt="image" src="https://github.com/user-attachments/assets/dc9f7a2e-fd80-425b-b061-cf11e60b3a89" />
+Payload: 127.0.0.1|whoami
+
 
 ## Impossible
 
