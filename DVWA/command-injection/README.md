@@ -58,12 +58,16 @@ I then performed some basic enumeration:
 
 This allowed me to identify the process user, the current directory, and the files present in the application directory.
 
+127.0.0.1; whoami
 <img width="771" height="431" alt="image" src="https://github.com/user-attachments/assets/ed30c719-7100-48e3-a693-f2595a8120ad" />
 
+127.0.0.1; id
 <img width="786" height="298" alt="image" src="https://github.com/user-attachments/assets/9b2840f3-2b2e-45cf-9a1f-1f1554bfcf0b" />
 
+127.0.0.1; pwd
 <img width="788" height="297" alt="image" src="https://github.com/user-attachments/assets/a2cbe238-671c-4c81-b428-3db27c2ff005" />
 
+127.0.0.1; ls -la
 <img width="790" height="391" alt="image" src="https://github.com/user-attachments/assets/60dca518-df67-431c-b941-53c068533b5b" />
 
 
