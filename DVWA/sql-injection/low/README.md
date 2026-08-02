@@ -4,7 +4,7 @@ In this lab, I tested the **SQL Injection** vulnerability in DVWA at the `Low` s
 
 The objective was to understand how the input was inserted into the SQL query, confirm the vulnerability, map the database structure, and extract data from the `users` table.
 
-<!-- Evidence 01: DVWA SQL Injection module at Low security level. -->
+![[Pasted image 20260802175640.png]]
 
 ## Environment
 
