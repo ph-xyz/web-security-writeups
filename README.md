@@ -5,3 +5,4 @@ Practical write-ups documenting my web application security studies, lab methodo
 ## DVWA
 
 - [OS Command Injection](DVWA/command-injection/README.md)
+- [SQL Injection — Low](DVWA/sql-injection/low/README.md)
