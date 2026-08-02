@@ -5,7 +5,12 @@ In this lab, I tested the **SQL Injection** vulnerability in DVWA at the `Low` s
 The objective was to understand how the input was inserted into the SQL query, confirm the vulnerability, map the database structure, and extract data from the `users` table.
 
 
-![Uploading Captura de tela 2026-08-02 175634.png…]()
+<p align="center">
+  <a href="images/01-sqli-module.png">
+    <img src="images/01-sqli-module.png" alt="DVWA SQL Injection module at Low security" width="780">
+  </a><br>
+  <sub>DVWA SQL Injection module running at the Low security level.</sub>
+</p>
 
 ## Environment
 
@@ -30,7 +35,12 @@ The application accepted numeric IDs from `1` to `5` and returned the correspond
 
 This established the application's expected behavior before I tested malformed input.
 
-<!-- Evidence 02: Normal User ID values and their results. -->
+<p align="center">
+  <a href="images/02-initial-testing.png">
+    <img src="images/02-initial-testing.png" alt="Normal User ID input returning the expected user" width="780">
+  </a><br>
+  <sub>Baseline test using a normal numeric User ID.</sub>
+</p>
 
 ## Triggering a SQL error
 
@@ -56,7 +66,12 @@ The error also exposed information such as:
 
 Although the HTTP response was `200 OK`, the page content showed that the SQL query had failed. This confirmed that the input was reaching the query without proper parameterization.
 
-<!-- Evidence 03: MariaDB syntax error caused by a single quote. -->
+<p align="center">
+  <a href="images/03-sql-error.png">
+    <img src="images/03-sql-error.png" alt="MariaDB syntax error triggered by a single quote" width="780">
+  </a><br>
+  <sub>A single quote triggers a detailed MariaDB syntax error.</sub>
+</p>
 
 ## Testing true and false conditions
 
@@ -78,7 +93,12 @@ Pablo Picasso
 Bob Smith
 ```
 
-<!-- Evidence 04: True condition returning every user. -->
+<p align="center">
+  <a href="images/04-true-condition.png">
+    <img src="images/04-true-condition.png" alt="True SQL condition returning all users" width="780">
+  </a><br>
+  <sub>The true condition returns every user in the result set.</sub>
+</p>
 
 ### False condition
 
@@ -88,7 +108,12 @@ Bob Smith
 
 Because `1=2` is false, the application returned no users.
 
-<!-- Evidence 05: False condition returning no users. -->
+<p align="center">
+  <a href="images/05-false-condition.png">
+    <img src="images/05-false-condition.png" alt="False SQL condition returning no users" width="780">
+  </a><br>
+  <sub>The false condition returns no users.</sub>
+</p>
 
 The different responses confirmed that I could control the condition used by the SQL query.
 
@@ -114,7 +139,12 @@ Both worked successfully. When I tested a third column:
 
 The application returned an error, indicating that the original query returned **two columns**.
 
-<!-- Evidence 06: ORDER BY 3 causing an error. -->
+<p align="center">
+  <a href="images/06-column-count.png">
+    <img src="images/06-column-count.png" alt="ORDER BY 3 error revealing the query column count" width="780">
+  </a><br>
+  <sub><code>ORDER BY 3</code> fails, confirming that the original query returns two columns.</sub>
+</p>
 
 ## Confirming UNION-based SQL injection
 
@@ -133,7 +163,12 @@ Surname: test2
 
 This confirmed that both columns accepted and displayed text data and that the vulnerability could be exploited using **UNION-based SQL injection**.
 
-<!-- Evidence 07: Two text values displayed through UNION SELECT. -->
+<p align="center">
+  <a href="images/07-union-confirmation.png">
+    <img src="images/07-union-confirmation.png" alt="UNION SELECT displaying two controlled text values" width="780">
+  </a><br>
+  <sub>Two controlled values are displayed through <code>UNION SELECT</code>.</sub>
+</p>
 
 ## Discovering the database version
 
@@ -151,7 +186,12 @@ The application returned:
 
 Knowing the database version helps determine which SQL syntax and database-specific functions are available. In a real assessment, the version could also be checked for known vulnerabilities, although that was not the focus of this lab.
 
-<!-- Evidence 08: MariaDB version returned by VERSION(). -->
+<p align="center">
+  <a href="images/08-database-version.png">
+    <img src="images/08-database-version.png" alt="MariaDB version returned by VERSION" width="780">
+  </a><br>
+  <sub>The database version returned by <code>VERSION()</code>.</sub>
+</p>
 
 ## Discovering the current database
 
@@ -167,7 +207,12 @@ The returned database name was:
 dvwa
 ```
 
-<!-- Evidence 09: Current database name returned by DATABASE(). -->
+<p align="center">
+  <a href="images/09-current-database.png">
+    <img src="images/09-current-database.png" alt="Current database name returned by DATABASE" width="780">
+  </a><br>
+  <sub>The current database name returned by <code>DATABASE()</code>.</sub>
+</p>
 
 ## Enumerating tables
 
@@ -192,7 +237,12 @@ The `users` table was the most interesting target because it could contain authe
 
 I had to research part of this payload because I did not remember the exact `information_schema` structure. However, the database name used in the condition came directly from the previous `DATABASE()` result.
 
-<!-- Evidence 10: Tables from the dvwa database. -->
+<p align="center">
+  <a href="images/10-table-enumeration.png">
+    <img src="images/10-table-enumeration.png" alt="Tables enumerated from the DVWA database" width="780">
+  </a><br>
+  <sub>Tables enumerated from the <code>dvwa</code> database.</sub>
+</p>
 
 ## Enumerating columns from the users table
 
@@ -222,7 +272,12 @@ account_enabled
 
 The most relevant columns for this test were `user` and `password`.
 
-<!-- Evidence 11: Columns from the users table. -->
+<p align="center">
+  <a href="images/11-column-enumeration.png">
+    <img src="images/11-column-enumeration.png" alt="Columns enumerated from the users table" width="780">
+  </a><br>
+  <sub>Columns enumerated from the <code>users</code> table.</sub>
+</p>
 
 ## Extracting usernames and password hashes
 
@@ -246,7 +301,12 @@ The values appear to be MD5 hashes because each one contains 32 hexadecimal char
 
 Cracking the hashes was unnecessary for this lab because the SQL injection had already demonstrated access to sensitive database information.
 
-<!-- Evidence 12: Usernames and password hashes extracted from users. -->
+<p align="center">
+  <a href="images/12-credential-extraction.png">
+    <img src="images/12-credential-extraction.png" alt="Usernames and password hashes extracted from the users table" width="780">
+  </a><br>
+  <sub>Usernames and password hashes extracted from the <code>users</code> table.</sub>
+</p>
 
 ## Vulnerable behavior
 
@@ -282,7 +342,12 @@ WHERE user_id = '' OR 1=1 -- ';
 
 The `OR 1=1` condition is always true, while `--` comments out the remaining quote. As a result, the database returns all rows from the `users` table.
 
-<!-- Evidence 13: Vulnerable source code from low.php. -->
+<p align="center">
+  <a href="images/13-vulnerable-source.png">
+    <img src="images/13-vulnerable-source.png" alt="Vulnerable SQL query in DVWA low.php" width="780">
+  </a><br>
+  <sub>The vulnerable query in <code>low.php</code> directly interpolates user-controlled input.</sub>
+</p>
 
 ## Impact
 
