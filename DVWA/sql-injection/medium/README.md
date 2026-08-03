@@ -45,10 +45,11 @@ I then tried a Boolean payload similar to the one used at Low:
 ```http
 id=1' OR 1=1 -- &Submit=Submit
 ```
+![Escaped quote shown in the MariaDB syntax error](images/02-escaped-quote-error.png)
 
 It failed because the quote was escaped. I removed the quote and tested:
 
-![Escaped quote shown in the MariaDB syntax error](images/02-escaped-quote-error.png)
+
 
 ```http
 id=1 OR 1=1 -- &Submit=Submit
