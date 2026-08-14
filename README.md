@@ -8,8 +8,13 @@ Practical write-ups documenting my web application security studies, lab methodo
 - [SQL Injection — Low](DVWA/sql-injection/low/README.md)
 - [SQL Injection — Medium](DVWA/sql-injection/medium/README.md)
 
+## OWASP Juice Shop
+
+- [Broken Object Level Authorization — Basket Items](OWASP-Juice-Shop/broken-object-level-authorization/README.md)
+
 ## References
 
 - [DVWA](https://github.com/digininja/DVWA)
+- [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/)
 - [OWASP WSTG](https://owasp.org/www-project-web-security-testing-guide/stable/)
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security)
