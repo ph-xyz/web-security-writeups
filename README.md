@@ -16,5 +16,5 @@ Practical write-ups documenting my web application security studies, lab methodo
 
 - [DVWA](https://github.com/digininja/DVWA)
 - [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/)
-- [OWASP WSTG](https://owasp.org/www-project-web-security-testing-guide/stable/)
+- [OWASP WSTG](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/)
 - [PortSwigger Web Security Academy](https://portswigger.net/web-security)
