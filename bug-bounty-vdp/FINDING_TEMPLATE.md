@@ -1,6 +1,6 @@
 # Finding title — descriptive and sanitized
 
-> **Template only — not a real finding.** Copy this file to \`findings/YYYY/short-finding-slug/README.md\` only after the [publication checklist](PUBLICATION_CHECKLIST.md) is satisfied. Remove all placeholders and sections that cannot be disclosed.
+> **Template only — not a real finding.** Copy this file to `findings/YYYY/short-finding-slug/README.md` only after the [publication checklist](PUBLICATION_CHECKLIST.md) is satisfied. Remove all placeholders and sections that cannot be disclosed.
 
 ## At a glance
 
@@ -75,7 +75,7 @@ HTTP/1.1 <OBSERVED-STATUS>
 
 ## Evidence
 
-[Links to approved, sanitized files in \`evidence/\`. Never include unredacted traffic, secrets, PII, private report screenshots, or sensitive metadata.]
+[Links to approved, sanitized files in `evidence/`. Never include unredacted traffic, secrets, PII, private report screenshots, or sensitive metadata.]
 
 ## Outcome and disclosure
 
@@ -87,4 +87,4 @@ HTTP/1.1 <OBSERVED-STATUS>
 
 ---
 
-[Back to findings index](../../README.md)
+[Back to findings index](../../../README.md)
